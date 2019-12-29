@@ -1,0 +1,38 @@
+service: sls-cors-example
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: "=1.55.1"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  environment:
+    JWT_SECRET: ${file(./.config.${self:provider.stage}.json):JWT.SECRET}
+
+functions:
+  info:
+    handler: handler.info
+    events:
+      - http:
+          path: users/create
+          method: get
+          cors: false
+  users-getAll:
+    handler: handlers/users.getAll
+    events:
+      - http:
+          path: users
+          method: get
+          cors: true
+  users-create:
+    handler: handler/users.create
+    events:
+      - http:
+          path: users
+          method: post
+          cors: true
