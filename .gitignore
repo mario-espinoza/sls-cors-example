@@ -4,5 +4,8 @@ jspm_packages
 
 # Serverless directories
 .serverless
+.DS_Store
+
+#Project Secrets
 .env
-.conf.*.json
+.config*.json
