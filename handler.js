@@ -1,4 +1,4 @@
-const { version, name } = require('./package.json');
+const { version, name } = require('./package.json')
 
 module.exports.info = async event => {
   return {
@@ -7,10 +7,10 @@ module.exports.info = async event => {
       {
         version,
         name,
-        input: event,
+        input: event
       },
       null,
       2
-    ),
-  };
-};
+    )
+  }
+}
